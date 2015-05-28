@@ -2,7 +2,7 @@
 
 Version control is a huge part of reproducible research and open source software development. Versioning provides a complete history of some digital object (e.g., a software program, a research project, etc.) and, importantly, allows one to trace what changes have made to that object, when those changes were made, and (with the appropriate metadata) why those changes were made. This document holds some of my current thinking about version control for data.
 
-## Existing Tools and Approaches ##
+## Review of Existing Tools and Approaches ##
 
 The Open Data Institute has [a nice post](https://theodi.org/blog/adapting-git-simple-data) outlining the challenges of using standard, software-oriented version control software (namely, git) for version control of data. The main issue is that git, like almost all VCS, is designed to monitor changes to lines in text files. This makes a lot of sense for code, as well as for articles, text, etc. But it starts to make less sense for digital objects where a line is not a meaningful unit. This becomes really clear when we start to version something like a comma-separated values (CSV) file (as the ODI post describes). Changing a single data field leads to a full-line change, even though only one cell actually changed. A similar problem emerges in XML, JSON, or other text-delimited formats. 
 
@@ -26,7 +26,7 @@ Another major challenge to data versioning is that existing tools version contro
 
 So, there are clearly no complete tools in existence for versioning data.
 
-## Principles of Data Versioning ##
+## Some Principles of Data Versioning ##
 
 The first principle of data versioning is that changes to data have sources or *explanations*. A system of data versioning must be able to connect data values, structure, and metadata (and changes to those features) to explanations of those values or the changes to values at the value level (rather than at the level of variables, observations, or files).
 
