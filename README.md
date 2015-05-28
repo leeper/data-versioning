@@ -42,10 +42,11 @@ The sixth principle of data versioning is that metadata matters but, like struct
 
 ## Tentative Conclusions ##
 
-Data should be stored in a key-value manner, where an arbitrary key holds a particular data value. A mapping then connections those particular data values to both observations and variables, so that any assessment of changes to data are format-independent and structure-independent. As such, a change to a value is recorded first as a change to a value but can be secondarily recognized as a simultaneous change to both an observation and a variable.
+Data should be stored in a key-value manner, where an arbitrary key holds a particular data value. A mapping then connects those particular data values to both observations and variables, so that any assessment of changes to data are format-independent and structure-independent. As such, a change to a value is recorded first as a change to a value but can be secondarily recognized as a simultaneous change to both an observation and a variable.
 
 Any interface to such a key-value store should come in a familiar and flexible form: users should interact with a data versioning system via whatever manner they currently use data (e.g., a text editor, data analysis software, a spreadsheet application, etc.). Changes should be recorded in a master file that can natively and immediately import from and export to any data file format (including delimited files, spreadsheets, XML, JSON, etc.).
 
+Data versioning systems must have a more sophisticated commit system than that provided by current, software-oriented version control systems. In particular, commits should record not only the change to a data value, structure, or metadata but also *structured* information that explains that change, including the reason for the change, the source(s) of the data value, and the author of the change. In essence, both changesets and states of the complete data should be fully citable and carry citation-relevant metadata.
 
 ---
 (c) 2015 Thomas J. Leeper, [released under CC-BY](https://creativecommons.org/licenses/by/2.0/)
