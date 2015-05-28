@@ -28,15 +28,24 @@ So, there are clearly no complete tools in existence for versioning data.
 
 ## Principles of Data Versioning ##
 
-The first principle is that data versioning cannot privilege observations over variables or variables over observations. A change to an observation is necessarily a change to a variable, and vice versa.
+The first principle of data versioning is that changes to data have sources or *explanations*. A system of data versioning must be able to connect data values, structure, and metadata (and changes to those features) to explanations of those values or the changes to values at the value level (rather than at the level of variables, observations, or files).
 
-The second principle of data versioning is that we care about changes to data values, not files. This should lead to strategies for versioning data that are format-independent. If I change a data value in a CSV versus a JSON tree, those should be equivalent. As such, any system of version control should allow data users to interact with data in whatever file format they choose without necessarily using the underlying data storage format.
+The second principle is that data versioning should be value-based, not variable- or observation-based. A system cannot privilege observations over variables or variables over observations; a change to an observation is necessarily a change to a variable, and vice versa.
 
-The third principle of data versioning is that changes to data structure should be recorded independently of data values. Sort order of observations, the arrangement of columns/variables, and the arrangement of rows as cases versus case-years, etc. (i.e., "wide" versus "long" arrangements) are structural features of a dataset, not features of the data per se. These are important, but a data versioning process should be able to distinguish a change to the content of a dataset from a change to the organization or structure of a dataset and, in the latter case, correctly recognize as identical a dataset that is arranged in two different ways.
+The third principle of data versioning is that data exist independent of their format. If one changes a data value in a CSV versus a JSON tree, those are content-equivalent changes. As such, any system of version control should allow data users to interact with data in whatever file format they choose without necessarily using the underlying data storage format.
 
-The fourth principle of data versioning is that metadata matters but, like structure, should be handled separately from changes to data. Two identical datasets with different metadata should be recognized as content-identical.
+The fourth principle of data versioning is that collaboration is essential to data generation and curation. A system of data versioning must be natively collaborative and logically record who is generating and modifying data.
 
-The fifth principle of data versioning is that changes to data have sources or *explanations*. A system of data versioning must be able to connect data values, structure, and metadata (and changes to those features) to explanations of those values or the changes to values at the value level (rather than at the level of variables, observations, or files).
+The fifth principle of data versioning is that changes to data structure should be recorded independently of data values. Sort order of observations, the arrangement of columns/variables, and the arrangement of rows as cases versus case-years, etc. (i.e., "wide" versus "long" arrangements) are structural features of a dataset, not features of the data per se. These are important, but a data versioning process should be able to distinguish a change to the content of a dataset from a change to the organization or structure of a dataset and, in the latter case, correctly recognize as identical a dataset that is arranged in two different ways.
+
+The sixth principle of data versioning is that metadata matters but, like structure, should be handled separately from changes to data. Two identical datasets with different metadata should be recognized as content-identical.
+
+## Tentative Conclusions ##
+
+Data should be stored in a key-value manner, where an arbitrary key holds a particular data value. A mapping then connections those particular data values to both observations and variables, so that any assessment of changes to data are format-independent and structure-independent. As such, a change to a value is recorded first as a change to a value but can be secondarily recognized as a simultaneous change to both an observation and a variable.
+
+Any interface to such a key-value store should come in a familiar and flexible form: users should interact with a data versioning system via whatever manner they currently use data (e.g., a text editor, data analysis software, a spreadsheet application, etc.). Changes should be recorded in a master file that can natively and immediately import from and export to any data file format (including delimited files, spreadsheets, XML, JSON, etc.).
+
 
 ---
 (c) 2015 Thomas J. Leeper, [released under CC-BY](https://creativecommons.org/licenses/by/2.0/)
