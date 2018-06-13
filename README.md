@@ -1,12 +1,14 @@
-# Data Versioning #
+# Data Versioning
+
+(c) Thomas J. Leeper (2015), licensed [CC-BY](LICENSE.md)
 
 Version control is a huge part of reproducible research and open source software development. Versioning provides a complete history of some digital object (e.g., a software program, a research project, etc.) and, importantly, allows one to trace what changes have made to that object, when those changes were made, and (with the appropriate metadata) why those changes were made. This document holds some of my current thinking about version control for data.
 
-## Background Context ##
+## Background Context
 
 Especially in the social sciences, researchers depend on large, public datasets (e.g., [Polity](http://www.systemicpeace.org/polity/polity4.htm), [Quality of Government](http://qog.pol.gu.se/), [Correlates of War](http://www.correlatesofwar.org/), [ANES](http://electionstudies.org/), [ESS](http://www.europeansocialsurvey.org/), etc.) as source material for quantitative research. These datasets typically evolve (new data is added over time, corrections are made to data values, etc.) and new releases are periodically made public. Sometimes these data are complex collaborative efforts (see, for example, Quality of Government) and others are public releases of single-institution data collection efforts (e.g., ANES). While collaborative datasets create a more obvious use case for version control, single-institution datasets might also be improved by version control. This is particularly important because old releases of these vital datasets are often not archived (e.g., ANES) meaninig that it is essentially impossible to recover a prior version of a given ANES dataset after a new release has occurred. This post is meant to steer thinking about how to manage the creation, curation, revision, and dissemination of these kinds of datasets. While the ideas here might also apply to how one thinks about managing their own data, they probably apply more at the stage of data creation than at later data use after a dataset is essentially complete or frozen.
 
-## Review of Existing Tools and Approaches ##
+## Review of Existing Tools and Approaches
 
 The Open Data Institute has [a nice post](https://theodi.org/blog/adapting-git-simple-data) outlining the challenges of using standard, software-oriented version control software (namely, git) for version control of data. The main issue is that git, like almost all VCS, is designed to monitor changes to lines in text files. This makes a lot of sense for code, as well as for articles, text, etc. But it starts to make less sense for digital objects where a line is not a meaningful unit. This becomes really clear when we start to version something like a comma-separated values (CSV) file (as the ODI post describes). Changing a single data field leads to a full-line change, even though only one cell actually changed. A similar problem emerges in XML, JSON, or other text-delimited formats (though, note that [the Open Knowledge Foundation seems to favor JSON as a storage mode](http://dataprotocols.org/data-packages/)). 
 
@@ -32,7 +34,7 @@ Another major challenge to data versioning is that existing tools version contro
 
 So, there are clearly no complete tools in existence for versioning data.
 
-## Some Principles of Data Versioning ##
+## Some Principles of Data Versioning
 
 The first principle of data versioning is that changes to data have sources or *explanations*. A system of data versioning must be able to connect data values, structure, and metadata (and changes to those features) to explanations of those values or the changes to values at the value level (rather than at the level of variables, observations, or files).
 
@@ -46,13 +48,10 @@ The fifth principle of data versioning is that changes to data structure should 
 
 The sixth principle of data versioning is that metadata matters but, like structure, should be handled separately from changes to data. Two identical datasets with different metadata should be recognized as content-identical.
 
-## Tentative Conclusions ##
+## Tentative Conclusions
 
 Data should be stored in a [key-value](http://en.wikipedia.org/wiki/Associative_array) manner, where an arbitrary key holds a particular data value. A mapping then connects those particular data values to both observations and variables, so that any assessment of changes to data are format-independent and structure-independent. As such, a change to a value is recorded first as a change to a value but can be secondarily recognized as a simultaneous change to both an observation and a variable.
 
 Any interface to such a key-value store should come in a familiar and flexible form: users should interact with a data versioning system via whatever manner they currently use data (e.g., a text editor, data analysis software, a spreadsheet application, etc.). Changes should be recorded in a master file that can natively and immediately import from and export to any data file format (including delimited files, spreadsheets, XML, JSON, etc.).
 
 Data versioning systems must have a more sophisticated commit system than that provided by current, software-oriented version control systems. In particular, commits should record not only the change to a data value, structure, or metadata but also *structured* information that explains that change, including the reason for the change, the source(s) of the data value, and the author of the change. In essence, both changesets and states of the complete data should be fully citable and carry citation-relevant metadata.
-
----
-(c) 2015 Thomas J. Leeper, [released under CC-BY](https://creativecommons.org/licenses/by/2.0/)
