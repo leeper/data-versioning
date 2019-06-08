@@ -28,6 +28,8 @@ But, UNF is not perfect. The problems include:
   - It is quite sensitive to data structure (e.g., "wide" and "long" representations of the same dataset produce different UNFs)
   - It is not a version control system and provides essentially no insights into what changed, only that a change occurred
 
+[DVC.org](https://github.com/iterative/dvc) is a data-versioning tool which is almost similar to working of Git-SCM. You can learn about it through [this post](https://blog.dataversioncontrol.com/data-version-control-beta-release-iterative-machine-learning-a7faf7c8be67) and [this](https://blog.dataversioncontrol.com/data-version-control-tutorial-9146715eda46).
+
 All of these tools also focus on the data themselves, rather than associated metadata (e.g., the codebook describing the data). While some data formats (e.g., proprietary formats like Stata's .dta and SPSS's .sav) encode this metadata directly in the file, it is not a common feature of widely text-delimited data structures. Sometimes codebooks are modified independent of data values and vice versa, but it's rather to see large public datasets provide detailed information about changes to either the data or the codebook, except in occasional releases.
 
 Another major challenge to data versioning is that existing tools version control are not well-designed to handle provenance. When data is generated, stored, or modified, a software-oriented version control system has no obvious mechanism for recording *why* values in a dataset are what they are or why changes are made to particular values. A commit message might provide this information, but as soon as a value is changed again, the history of changes *to a particular value* are lost in the broader history of the data file as a whole.
